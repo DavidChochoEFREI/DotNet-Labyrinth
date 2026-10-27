@@ -1,4 +1,5 @@
 ﻿using Labyrinth.Build;
+using Labyrinth.Crawl;
 using Labyrinth.Tiles;
 using System.Text;
 
@@ -61,6 +62,8 @@ namespace Labyrinth
             }
             return res.ToString();
         }
+
+        public ICrawler NewCrawler() => throw new NotImplementedException("To be implemented");
 
         private readonly Tile[,] _tiles;
         private (int, int) _startPosition;
