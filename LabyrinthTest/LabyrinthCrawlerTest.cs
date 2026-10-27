@@ -49,7 +49,12 @@ public class LabyrinthCrawlerTest
     [Test]
     public void InitWithNoXThrowsArgumentException()
     {
-        Assert.That(false);
+        Assert.Throws<ArgumentException>(() => new Labyrinth.Labyrinth(new AsciiParser("""
+            +--+
+            |  |
+            +--+
+            """))
+        );
     }
     #endregion
 
