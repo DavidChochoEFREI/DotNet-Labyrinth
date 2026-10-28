@@ -5,8 +5,8 @@ namespace Labyrinth.Crawl;
 
 public class StandardCrawler : ICrawler
 {
-    public int X { get; }
-    public int Y { get; }
+    public int X { get; private set; }
+    public int Y { get; private set; }
     public Direction Direction { get; }
 
     public Tile FacingTile
@@ -33,7 +33,10 @@ public class StandardCrawler : ICrawler
 
     public Inventory Walk()
     {
-        throw new NotImplementedException();
+        var inventory = FacingTile.Pass();
+        X += Direction.DeltaX;
+        Y += Direction.DeltaY;
+        return inventory;
     }
 
     public StandardCrawler(int x, int y, Direction direction, Tile[,] tiles)
