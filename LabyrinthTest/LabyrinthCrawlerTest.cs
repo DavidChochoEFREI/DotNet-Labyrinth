@@ -161,6 +161,8 @@ public class LabyrinthCrawlerTest
         using var all = Assert.EnterMultipleScope();
         
         Assert.That(inventory, Is.Not.Null);
+        Assert.That(test.X, Is.EqualTo(2));
+        Assert.That(test.Y, Is.EqualTo(1));
         Assert.That(test.FacingTile, Is.TypeOf(Wall.Singleton.GetType()));
 
     }
