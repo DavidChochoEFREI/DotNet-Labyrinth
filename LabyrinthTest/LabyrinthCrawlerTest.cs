@@ -79,19 +79,53 @@ public class LabyrinthCrawlerTest
     [Test]
     public void FacingWestOnFarLeftTileReturnsOutside()
     {
-        Assert.That(false);
+        var laby = new Labyrinth.Labyrinth(new AsciiParser("""
+           +--+
+           x  |
+           +--+
+           """));
+        var test = laby.NewCrawler();
+        test.Direction.TurnLeft();
+        using var all = Assert.EnterMultipleScope();
+
+        Assert.That(test.Direction, Is.EqualTo(Direction.West));
+        Assert.That(test.FacingTile, Is.TypeOf(Outside.Singleton.GetType()));
+
     }
 
     [Test]
     public void FacingEastOnFarRightTileReturnsOutside()
     {
-        Assert.That(false);
+        var laby = new Labyrinth.Labyrinth(new AsciiParser("""
+           +--+
+           |  x
+           +--+
+           """));
+        var test = laby.NewCrawler();
+        test.Direction.TurnRight();
+        using var all = Assert.EnterMultipleScope();
+
+        Assert.That(test.Direction, Is.EqualTo(Direction.East));
+        Assert.That(test.FacingTile, Is.TypeOf(Outside.Singleton.GetType()));
+
     }
 
     [Test]
     public void FacingSouthOnBottomTileReturnsOutside()
     {
-        Assert.That(false);
+        var laby = new Labyrinth.Labyrinth(new AsciiParser("""
+           +--+
+           |  |
+           +-x+
+           """));
+        var test = laby.NewCrawler();
+        test.Direction.TurnLeft();
+        test.Direction.TurnLeft();
+        using var all = Assert.EnterMultipleScope();
+
+        Assert.That(test.Direction, Is.EqualTo(Direction.South));
+        Assert.That(test.FacingTile, Is.TypeOf(Outside.Singleton.GetType()));
+
     }
     #endregion
 
