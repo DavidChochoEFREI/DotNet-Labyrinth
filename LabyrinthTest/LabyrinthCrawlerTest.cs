@@ -170,7 +170,23 @@ public class LabyrinthCrawlerTest
     [Test]
     public void TurnAndWalkReturnsInventoryChangesPositionAndFacingTile()
     {
-        Assert.That(false);
+        var laby = new Labyrinth.Labyrinth(new AsciiParser("""
+           +--+
+           |  |
+           | x|
+           +--+
+           """));
+        var test = laby.NewCrawler();
+        test.Direction.TurnLeft();
+        var inventory = test.Walk();
+
+        using var all = Assert.EnterMultipleScope();
+        
+        Assert.That(inventory, Is.Not.Null);
+        Assert.That(test.X, Is.EqualTo(1));
+        Assert.That(test.Y, Is.EqualTo(2));
+        Assert.That(test.FacingTile, Is.TypeOf(Wall.Singleton.GetType()));
+
     }
 
     [Test]
