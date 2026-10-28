@@ -66,7 +66,7 @@ namespace Labyrinth
         public ICrawler NewCrawler()
         {
             (int x, int y) = _startPosition;
-            return new StandardCrawler(x, y, Direction.North, Wall.Singleton);
+            return new StandardCrawler(x, y, Direction.North, _tiles);
             
         }
 
